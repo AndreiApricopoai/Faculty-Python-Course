@@ -1,4 +1,4 @@
 # Laboratorul de Python
 
--Nume : Apricopoai Andrei-Constantin
--Grupa : 3A3
+-Nume : Apricopoai Andrei-Constantin  
+-Grupa : 3A3  
