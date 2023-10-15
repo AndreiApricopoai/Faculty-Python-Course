@@ -1,4 +1,4 @@
-# Laboratorul 1
+# Laboratory 1
 
 # Ex1 - Find The greatest common divisor of multiple numbers read from the console.
 def gcd_for_two_numbers(x, y):
@@ -14,7 +14,6 @@ def gcd_for_list_of_numbers(numbers):
     for i in range(1, len(numbers)):
         result = gcd_for_two_numbers(result, numbers[i])
     return result
-
 
 numbers_count = int(input("How many numbers do you want to input? "))
 numbers = []
