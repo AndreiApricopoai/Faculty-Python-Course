@@ -182,14 +182,84 @@ def ascii_divisible(x: int = 1, strings: list[str] = [], flag: bool = True) -> l
 print(ascii_divisible(2,  ["test", "hello", "lab002"], flag=False))
 
 
-# Ex9 - Find The greatest common divisor of multiple numbers read from the console.
+# Ex9 - Write a function that receives as paramer a matrix which represents the heights
+# of the spectators in a stadium and will return a list of tuples (line, column) each one
+# representing a seat of a spectator which can't see the game. A spectator can't see the
+# game if there is at least one taller spectator standing in front of him. All the seats are occupied.
+# All the seats are at the same level. Row and column indexing starts from 0, beginning with the closest
+# row from the field.
+def bad_seats(matrix: list[list[int]]) -> list[tuple]:
+    result = []
+    n = len(matrix)
+    m = len(matrix[0])
+
+    for i in range(n-1, -1, -1):
+        for j in range(m):
+            for k in range(i-1, -1, -1):
+                if matrix[k][j] >= matrix[i][j]:
+                    result.append((i, j))
+                    break
+    return result
+
+
+print(bad_seats([[1, 2, 3, 2, 1, 1],
+                [2, 4, 4, 3, 7, 2],
+                [5, 5, 2, 5, 6, 4],
+                [6, 6, 7, 6, 7, 5]]))
 
 
 # Ex10 - Write a function that receives a variable number of lists and returns a list
 # of tuples as follows: the first tuple contains the first items in the lists,
 # the second element contains the items on the position 2 in the lists, etc.
+def tuples_from_lists(*lists: list) -> list[tuple]:
+    result = []
+    max_length = 0
+    for list in lists:
+        if len(list) > max_length:
+            max_length = len(list)
+
+    for i in range(max_length):
+        temp_list = []
+        for list in lists:
+            if i < len(list):
+                temp_list.append(list[i])
+            else:
+                temp_list.append(None)
+        result.append(tuple(temp_list))
+    return result
 
 
+print(tuples_from_lists([1,2,3,4], [5,6,7], ["a", "b", "c"]))
 
-# Ex11 - Find The greatest common divisor of multiple numbers read from the console.
-# Ex12 - Find The greatest common divisor of multiple numbers read from the console.
+
+# Ex11 - Write a function that will order a list of string tuples based on the 3rd
+# character of the 2nd element in the tuple.
+# Example: ('abc', 'bcd'), ('abc', 'zza')] ==> [('abc', 'zza'), ('abc', 'bcd')]
+def sort_tuples(tuples: list[tuple]) -> list[tuple]:
+    return sorted(tuples, key=lambda x: x[1][2])
+
+
+print(sort_tuples([('abc', 'bcd'), ('abc', 'zza')]))
+
+
+# Ex12 - Write a function that will receive a list of words as parameter and will
+# return a list of lists of words, grouped by rhyme. Two words rhyme if both of them
+# end with the same 2 letters.Example:group_by_rhyme(['ana', 'banana', 'carte', 'arme', 'parte'])
+# will return [['ana', 'banana'], ['carte', 'parte'], ['arme']]
+def group_by_rhyme(words: list[str]) -> list[list[str]]:
+    result = []
+    while len(words) > 0:
+        temp = []
+        ending = words[0][-2:]
+        to_remove = []
+        for word in words:
+            if word[-2:] == ending:
+                temp.append(word)
+                to_remove.append(word)
+        for word in to_remove:
+            words.remove(word)
+        result.append(temp)
+    return result
+
+
+print(group_by_rhyme(['ana', 'banana', 'carte', 'arme', 'parte']))
