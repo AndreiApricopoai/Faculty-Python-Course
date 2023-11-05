@@ -33,12 +33,16 @@ class Stack:
     def is_empty(self) -> bool:
         return len(self.elements) == 0
 
+    def __str__(self):
+        return str(self.elements)
+
 
 my_stack = Stack()
 print("Is the stack empty?", my_stack.is_empty())
 my_stack.push('apple')
 my_stack.push('banana')
 my_stack.push('cherry')
+print(my_stack)
 print("Top element is:", my_stack.peek())
 print("Is the stack full?", my_stack.is_full())
 print("Popped element:", my_stack.pop())
@@ -86,12 +90,16 @@ class Queue:
     def is_empty(self) -> bool:
         return len(self.elements) == 0
 
+    def __str__(self):
+        return str(self.elements)
+
 
 my_queue = Queue()
 print("Is the queue empty?", my_queue.is_empty())
 my_queue.push('apple')
 my_queue.push('banana')
 my_queue.push('cherry')
+print(my_queue)
 print("Front element is:", my_queue.peek())
 print("Removed element:", my_queue.pop())
 print("Is the queue full?", my_queue.is_full())
